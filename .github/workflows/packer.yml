@@ -5,6 +5,8 @@ on: # rebuild any PRs and main branch changes
   push:
     branches:
       - main
+  schedule:
+    - cron: '0 4 * * 1,4'
 
 jobs:
   build:

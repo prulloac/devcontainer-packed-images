@@ -1,0 +1,36 @@
+{
+    "name": "Dev Container Features",
+    "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "json.schemas": [
+                    {
+                        "fileMatch": [
+                            "*/devcontainer-feature.json"
+                        ],
+                        "url": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainerFeature.schema.json"
+                    }
+                ]
+            },
+            "extensions": [
+                "mads-hartmann.bash-ide-vscode",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "github.vscode-github-actions"
+            ]
+        }
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+            "installDockerBuildx": true,
+            "version": "latest",
+            "dockerDashComposeVersion": "v2"
+        },
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "configureZshAsDefaultShell": true
+        }
+    },
+    "remoteUser": "node",
+    "updateContentCommand": "npm install -g @devcontainers/cli && npm install -g npm@latest"
+}

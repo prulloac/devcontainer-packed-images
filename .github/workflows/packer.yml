@@ -12,6 +12,9 @@ jobs:
   build:
     name: Build and Push Dev Container Image
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [alpine, debian, ubuntu]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,7 +27,14 @@ jobs:
       - name: Pre-build dev container image
         uses: devcontainers/ci@v0.3
         with:
-          imageName: ghcr.io/prulloac/base-devcontainer
-          cacheFrom: ghcr.io/prulloac/base-devcontainer
-          configFile: src/base/devcontainer.json
+          imageName: ghcr.io/prulloac/base-${{ matrix.os }}-devcontainer
+          cacheFrom: ghcr.io/prulloac/base-${{ matrix.os }}-devcontainer
+          configFile: src/base-${{ matrix.os }}/devcontainer.json
+          push: always
+      - name: Build bun dev container image
+        uses: devcontainers/ci@v0.3
+        with:
+          imageName: ghcr.io/prulloac/bun-${{ matrix.os }}-devcontainer
+          cacheFrom: ghcr.io/prulloac/bun-${{ matrix.os }}-devcontainer
+          configFile: src/bun-${{ matrix.os }}/devcontainer.json
           push: always

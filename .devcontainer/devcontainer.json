@@ -1,6 +1,6 @@
 {
     "name": "Dev Container Features",
-    "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
+    "image": "ghcr.io/prulloac/bun-ubuntu-devcontainer:latest",
     "customizations": {
         "vscode": {
             "settings": {
@@ -26,11 +26,7 @@
             "installDockerBuildx": true,
             "version": "latest",
             "dockerDashComposeVersion": "v2"
-        },
-        "ghcr.io/devcontainers/features/common-utils:2": {
-            "configureZshAsDefaultShell": true
         }
     },
-    "remoteUser": "node",
     "updateContentCommand": "npm install -g @devcontainers/cli && npm install -g npm@latest"
 }

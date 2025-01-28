@@ -27,6 +27,7 @@ jobs:
           configFile: src/base-${{ matrix.os }}/devcontainer.json
           push: never
   build-dev-images:
+    needs: build-base-images
     name: Build and Push Dev Container Development Images
     runs-on: ubuntu-latest
     strategy:

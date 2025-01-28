@@ -33,7 +33,7 @@ jobs:
     strategy:
       matrix:
         os: [alpine, debian, ubuntu]
-        stack: [bun]
+        stack: [bun, go]
     steps:
       - name: Checkout
         uses: actions/checkout@v4

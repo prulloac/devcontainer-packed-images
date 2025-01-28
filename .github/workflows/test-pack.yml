@@ -1,9 +1,7 @@
 name: Build dev container image
 
 on: # rebuild any PRs and main branch changes
-  schedule:
-    - cron: '0 4 * * 1,4'
-  workflow_dispatch:
+  pull_request:
 
 jobs:
   build:
@@ -34,4 +32,4 @@ jobs:
           imageName: ghcr.io/prulloac/bun-${{ matrix.os }}-devcontainer
           cacheFrom: ghcr.io/prulloac/bun-${{ matrix.os }}-devcontainer
           configFile: src/bun-${{ matrix.os }}/devcontainer.json
-          push: always
+          push: never

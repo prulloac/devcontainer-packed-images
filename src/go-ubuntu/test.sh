@@ -6,4 +6,4 @@ gh --version
 vim --version
 nvim --version
 tmux -V
-go --version
+go version

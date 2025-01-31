@@ -26,6 +26,10 @@ jobs:
           cacheFrom: ghcr.io/prulloac/base-${{ matrix.os }}-devcontainer
           configFile: src/base-${{ matrix.os }}/devcontainer.json
           push: never
+      - name: Test base ${{ matrix.os }} image
+        run: |
+          echo "Running tests..."
+          cat src/base-${{ matrix.os }}/test.sh | docker run --rm -i ghcr.io/prulloac/base-${{ matrix.os }}-devcontainer:latest /bin/sh
   build-dev-images:
     needs: build-base-images
     name: Build and Push Dev Container Development Images
@@ -50,3 +54,7 @@ jobs:
           cacheFrom: ghcr.io/prulloac/${{ matrix.stack }}-${{ matrix.os }}-devcontainer
           configFile: src/${{ matrix.stack }}-${{ matrix.os }}/devcontainer.json
           push: never
+      - name: Test ${{ matrix.stack }} running on ${{ matrix.os }}
+        run: |
+          echo "Running tests..."
+          cat src/${{ matrix.stack }}-${{ matrix.os }}/test.sh | docker run --rm -i ghcr.io/prulloac/${{ matrix.stack }}-${{ matrix.os }}-devcontainer:latest /bin/sh

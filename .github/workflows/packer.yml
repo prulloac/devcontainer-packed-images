@@ -27,7 +27,7 @@ jobs:
           imageName: ghcr.io/prulloac/base-${{ matrix.os }}-devcontainer
           cacheFrom: ghcr.io/prulloac/base-${{ matrix.os }}-devcontainer
           configFile: src/base-${{ matrix.os }}/devcontainer.json
-          push: never
+          push: always
   build-dev-images:
     needs: build-base-images
     name: Development Images
@@ -51,4 +51,4 @@ jobs:
           imageName: ghcr.io/prulloac/${{ matrix.stack }}-${{ matrix.os }}-devcontainer
           cacheFrom: ghcr.io/prulloac/${{ matrix.stack }}-${{ matrix.os }}-devcontainer
           configFile: src/${{ matrix.stack }}-${{ matrix.os }}/devcontainer.json
-          push: never
+          push: always

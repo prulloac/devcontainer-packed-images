@@ -1,4 +1,4 @@
-name: Build dev container image
+name: Build and Push dev container images
 
 on: # rebuild any PRs and main branch changes
   schedule:
@@ -7,7 +7,7 @@ on: # rebuild any PRs and main branch changes
 
 jobs:
   build-base-images:
-    name: Build and Push Dev Container Base Images
+    name: Base Images
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -30,7 +30,7 @@ jobs:
           push: never
   build-dev-images:
     needs: build-base-images
-    name: Build and Push Dev Container Development Images
+    name: Development Images
     runs-on: ubuntu-latest
     strategy:
       matrix:

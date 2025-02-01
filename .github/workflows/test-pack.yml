@@ -1,11 +1,11 @@
-name: Test Build dev container image
+name: Test images
 
 on: # rebuild any PRs and main branch changes
   pull_request:
 
 jobs:
   build-base-images:
-    name: Build and Push Dev Container Base Images
+    name: Base Images
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -32,7 +32,7 @@ jobs:
           cat src/base-${{ matrix.os }}/test.sh | docker run --rm -i ghcr.io/prulloac/base-${{ matrix.os }}-devcontainer:latest /bin/sh
   build-dev-images:
     needs: build-base-images
-    name: Build and Push Dev Container Development Images
+    name: Development Images
     runs-on: ubuntu-latest
     strategy:
       matrix:

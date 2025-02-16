@@ -1,0 +1,8 @@
+{
+	"name": "Base Python Dev Container",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "ghcr.io/prulloac/base-debian-devcontainer",
+    "features": {
+        "ghcr.io/devcontainers/features/python": {}
+    }
+}

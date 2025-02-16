@@ -1,0 +1,10 @@
+{
+	"name": "Base Rust Dev Container",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "ghcr.io/prulloac/base-alpine-devcontainer",
+    "features": {
+        "ghcr.io/devcontainers/features/rust": {
+            "profile": "complete"
+        }
+    }
+}

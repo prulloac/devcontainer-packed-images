@@ -8,6 +8,7 @@ jobs:
     name: Base Images
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         os: [alpine, debian, ubuntu]
     steps:
@@ -35,6 +36,7 @@ jobs:
     name: Development Images
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         os: [alpine, debian, ubuntu]
         stack: [bun, go, python, java, rust]

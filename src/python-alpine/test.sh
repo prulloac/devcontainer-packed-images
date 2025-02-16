@@ -6,4 +6,4 @@ gh --version
 vim --version
 nvim --version
 tmux -V
-python version
+python --version

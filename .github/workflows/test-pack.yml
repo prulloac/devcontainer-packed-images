@@ -29,7 +29,7 @@ jobs:
           imageName: ghcr.io/prulloac/base
           imageTag: ${{ matrix.os }}
           configFile: src/base/devcontainer.json
-          push: never
+          push: always
       - name: Test base ${{ matrix.os }} image
         run: |
           echo "Running tests..."

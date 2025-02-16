@@ -29,6 +29,7 @@ jobs:
         with:
           imageName: ghcr.io/prulloac/base
           imageTag: ${{ matrix.os }}
+          noCache: true
           configFile: src/base/devcontainer.json
           push: always
   build-dev-images:

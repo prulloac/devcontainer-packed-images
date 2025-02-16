@@ -1,9 +1,0 @@
-{
-	"name": "Base Php Dev Container",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "ghcr.io/prulloac/base-ubuntu-devcontainer",
-    "features": {
-        "ghcr.io/devcontainers/features/php": {
-        }
-    }
-}

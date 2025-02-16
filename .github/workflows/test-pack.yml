@@ -10,8 +10,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [alpine, debian, ubuntu]
+        os: [alpine, debian, bookworm, bullseye, ubuntu, ubuntu-22.02, ubuntu-20.04]
     steps:
+      - name: Sed
+        run: |
+          sed -i 's/\${TAG}/'"${{ matrix.os }}"'/g' src/base/devcontainer.json
       - name: Checkout
         uses: actions/checkout@v4
       - name: Login to GitHub Container Registry
@@ -23,14 +26,15 @@ jobs:
       - name: Pre-build dev container image
         uses: devcontainers/ci@v0.3
         with:
-          imageName: ghcr.io/prulloac/base-${{ matrix.os }}-devcontainer
-          cacheFrom: ghcr.io/prulloac/base-${{ matrix.os }}-devcontainer
-          configFile: src/base-${{ matrix.os }}/devcontainer.json
+          imageName: ghcr.io/prulloac/base
+          cacheFrom: ghcr.io/prulloac/base
+          imageTag: ${{ matrix.os }}
+          configFile: src/base/devcontainer.json
           push: never
       - name: Test base ${{ matrix.os }} image
         run: |
           echo "Running tests..."
-          cat src/base-${{ matrix.os }}/test.sh | docker run --rm -i ghcr.io/prulloac/base-${{ matrix.os }}-devcontainer:latest /bin/sh
+          cat src/base/test.sh | docker run --rm -i ghcr.io/prulloac/base:${{ matrix.os }} /bin/sh
   build-dev-images:
     needs: build-base-images
     name: Development Images
@@ -38,9 +42,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [alpine, debian, ubuntu]
+        os: [alpine, debian, bookworm, bullseye, ubuntu, ubuntu-22.02, ubuntu-20.04]
         stack: [bun, go, python, java, rust, ruby, php, zig, universal]
     steps:
+      - name: Sed
+        run: |
+          sed -i 's/\${TAG}/'"${{ matrix.os }}"'/g' src/${{ matrix.stack }}/devcontainer.json
       - name: Checkout
         uses: actions/checkout@v4
       - name: Login to GitHub Container Registry
@@ -52,11 +59,12 @@ jobs:
       - name: Build ${{ matrix.stack }} dev container image
         uses: devcontainers/ci@v0.3
         with:
-          imageName: ghcr.io/prulloac/${{ matrix.stack }}-${{ matrix.os }}-devcontainer
-          cacheFrom: ghcr.io/prulloac/${{ matrix.stack }}-${{ matrix.os }}-devcontainer
-          configFile: src/${{ matrix.stack }}-${{ matrix.os }}/devcontainer.json
+          imageName: ghcr.io/prulloac/${{ matrix.stack }}
+          cacheFrom: ghcr.io/prulloac/${{ matrix.stack }}
+          imageTag: ${{ matrix.os }}
+          configFile: src/${{ matrix.stack }}/devcontainer.json
           push: never
       - name: Test ${{ matrix.stack }} running on ${{ matrix.os }}
         run: |
           echo "Running tests..."
-          cat src/${{ matrix.stack }}-${{ matrix.os }}/test.sh | docker run --rm -i ghcr.io/prulloac/${{ matrix.stack }}-${{ matrix.os }}-devcontainer:latest /bin/sh
+          cat src/${{ matrix.stack }}/test.sh | docker run --rm -i ghcr.io/prulloac/${{ matrix.stack }}:${{ matrix.os }} /bin/sh

@@ -1,0 +1,10 @@
+{
+	"name": "Base Bun Dev Container",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "ghcr.io/prulloac/base:${TAG}",
+    "features": {
+        "ghcr.io/prulloac/devcontainer-features/bun": {
+            "useNpm": true
+        }
+    }
+}

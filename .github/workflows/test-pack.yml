@@ -12,11 +12,11 @@ jobs:
       matrix:
         os: [alpine, debian, bookworm, bullseye, ubuntu, ubuntu-22.02, ubuntu-20.04]
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Sed
         run: |
           sed -i 's/\${TAG}/'"${{ matrix.os }}"'/g' src/base/devcontainer.json
-      - name: Checkout
-        uses: actions/checkout@v4
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2 
         with:
@@ -45,11 +45,11 @@ jobs:
         os: [alpine, debian, bookworm, bullseye, ubuntu, ubuntu-22.02, ubuntu-20.04]
         stack: [bun, go, python, java, rust, ruby, php, zig, universal]
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Sed
         run: |
           sed -i 's/\${TAG}/'"${{ matrix.os }}"'/g' src/${{ matrix.stack }}/devcontainer.json
-      - name: Checkout
-        uses: actions/checkout@v4
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2 
         with:

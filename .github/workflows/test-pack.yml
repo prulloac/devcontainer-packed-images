@@ -39,7 +39,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [alpine, debian, ubuntu]
-        stack: [bun, go, python, java, rust]
+        stack: [bun, go, python, java, rust, ruby, php, zig, universal]
     steps:
       - name: Checkout
         uses: actions/checkout@v4

@@ -37,7 +37,7 @@ jobs:
     strategy:
       matrix:
         os: [alpine, debian, ubuntu]
-        stack: [bun, go]
+        stack: [bun, go, python, java, rust]
     steps:
       - name: Checkout
         uses: actions/checkout@v4

@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [alpine, debian, bookworm, bullseye, ubuntu, ubuntu-22.02, ubuntu-20.04]
+        os: [alpine, debian, bookworm, bullseye, ubuntu, ubuntu-22.04, ubuntu-20.04]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,7 +42,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [alpine, debian, bookworm, bullseye, ubuntu, ubuntu-22.02, ubuntu-20.04]
+        os: [alpine, debian, bookworm, bullseye, ubuntu, ubuntu-22.04, ubuntu-20.04]
         stack: [bun, go, python, java, rust, ruby, php, zig, universal]
     steps:
       - name: Checkout

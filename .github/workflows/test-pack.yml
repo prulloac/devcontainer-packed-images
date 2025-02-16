@@ -60,6 +60,7 @@ jobs:
         with:
           imageName: ghcr.io/prulloac/${{ matrix.stack }}
           imageTag: ${{ matrix.os }}
+          noCache: true
           configFile: src/${{ matrix.stack }}/devcontainer.json
           push: never
       - name: Test ${{ matrix.stack }} running on ${{ matrix.os }}
